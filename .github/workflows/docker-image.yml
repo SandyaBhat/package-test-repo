@@ -13,12 +13,16 @@ jobs:
         working-directory: sample-packages/docker
     steps:
       - uses: actions/checkout@v2
+      - uses: docker/login-action@v2.0.0
+        with:
+          registry: ghcr.io
+          username: sandyabhat
+          password: $GITHUB_TOKEN
       - name: build-doker-image
         run: |
           docker build -t hello-docker .
           docker images
       - name: publish-image
         run: |
-          echo $GITHUB_TOKEN | docker login ghcr.io -u sandyabhat --password-stdin
           docker tag hello-docker ghcr.io/SandyaBhat/hello-docker:latest
           docker push ghcr.io/SandyaBhat/hello-docker:latest

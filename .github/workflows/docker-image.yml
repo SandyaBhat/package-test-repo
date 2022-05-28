@@ -12,6 +12,7 @@ jobs:
       run:
         working-directory: sample-packages/docker
     steps:
+      - uses: actions/checkout@v2
       - name: build-doker-image
         run: |
           docker build -t hello-docker .

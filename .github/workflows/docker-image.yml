@@ -1,0 +1,23 @@
+name: publish docker image
+on:
+  push:
+    path:
+      - '.github/workflows/docker-image.yml'
+      - 'sample-packages/docker/*'
+
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sample-packages/docker
+    steps:
+      - name: build-doker-image
+        run: |
+          docker build -t hello-docker .
+          docker images
+      - name: publish-image
+        run: |
+          echo $GITHUB_TOKEN | docker login ghcr.io -u sandyabhat --password-stdin
+          docker tag hello-docker ghcr.io/SandyaBhat/hello-docker:latest
+          docker push ghcr.io/SandyaBhat/hello-docker:latest

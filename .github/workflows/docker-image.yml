@@ -17,7 +17,7 @@ jobs:
         with:
           registry: ghcr.io
           username: sandyabhat
-          password: $GITHUB_TOKEN
+          password: ${{ secrets.SAML_GIT_TOKEN}}
       - name: build-doker-image
         run: |
           docker build -t hello-docker .

@@ -24,5 +24,5 @@ jobs:
           docker images
       - name: publish-image
         run: |
-          docker tag hello-docker ghcr.io/SandyaBhat/hello-docker:latest
-          docker push ghcr.io/SandyaBhat/hello-docker:latest
+          docker tag hello-docker ghcr.io/sandyabhat/hello-docker:latest
+          docker push ghcr.io/sandyabhat/hello-docker:latest
